@@ -22,6 +22,10 @@ public class Store {
     private Integer stock; // 재고
     private Integer price;
 
+    public void 재고감소(int qty) {
+        this.stock = this.stock - qty;
+    }
+
 }
 // public void setStock(Integer stock) {
 // this.stock = stock-qty; 로 써도 이해하기 어려우므로 아래와 같이 직관적으로 Setter를 만들어줌.

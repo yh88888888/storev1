@@ -32,4 +32,13 @@ public class LogRepository {
         return logList;
     }
 
+    public void save(int storeId, int qty, int totalPrice, String buyer) {
+        Query query = em.createNativeQuery("insert into log_tb(storeId, qty, totalPrice, buyer) value(?,?,?,?)");
+        query.setParameter(1, storeId);
+        query.setParameter(2, qty);
+        query.setParameter(3, totalPrice);
+        query.setParameter(4, buyer);
+        query.executeUpdate();
+
+    }
 }

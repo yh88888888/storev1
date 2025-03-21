@@ -41,7 +41,7 @@ public class StoreService {
     }
 
     @Transactional
-    public void 상품수정(int id, String name, String stock, String price) {
+    public void 상품수정(int id, String name, int stock, int price) {
         // 1. 상품조회
         Store store = storeRepository.findById(id);
         // 2. 상품이 없으면 - Repository에서 try-catch가 가능하지만 책임을 구분하는 차원에서 Service에서 처리한다.

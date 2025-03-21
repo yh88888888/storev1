@@ -1,5 +1,7 @@
 package com.metacoding.storev1.log;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,7 +19,7 @@ public class LogRepositoryTest {
 
     @Test // 3. 세모버튼 생김
     public void findAllJoinStore_test() { // 2. 매개변수에 아무것도 적을 수 없다.
-        java.util.List<LogResponse.ListPage> logList = logRepository.findAllJoinStore();
+        List<LogResponse.ListPage> logList = logRepository.findAllJoinStore();
 
         for (LogResponse.ListPage listPage : logList) {
             System.out.println(listPage);
