@@ -19,7 +19,7 @@ public class StoreService {
         storeRepository.save(name, stock, price);
     }
 
-    public Store 상품상세(int id) {
+    public Store 상세보기(int id) {
         Store store = storeRepository.findById(id);
         return store;
     }
@@ -46,10 +46,9 @@ public class StoreService {
         Store store = storeRepository.findById(id);
         // 2. 상품이 없으면 - Repository에서 try-catch가 가능하지만 책임을 구분하는 차원에서 Service에서 처리한다.
         if (store == null) {
-            throw new UnsupportedOperationException("상품없어");
+            throw new RuntimeException("상품없어");
         }
-        storeRepository.updateBId(id, name, stock, price);// write(DML=insert, delete, update)
-        // TODO Auto-generated method stub
+        storeRepository.updateById(id, name, stock, price);// write(DML=insert, delete, update)
 
     }
 }

@@ -30,7 +30,7 @@ public class StoreRepository {
         try {
             return (Store) query.getSingleResult();
         } catch (Exception e) { // NoResultException
-            return null;// TODO: handle exception
+            return null;
         }
 
     }
@@ -49,7 +49,7 @@ public class StoreRepository {
         query.executeUpdate();
     }
 
-    public void updateBId(int id, String name, String stock, String price) {
+    public void updateById(int id, String name, String stock, String price) {
         Query query = em.createNativeQuery("update store_tb set name=?, stock=?, price=? where id=?");
         query.setParameter(1, name);
         query.setParameter(2, stock);
