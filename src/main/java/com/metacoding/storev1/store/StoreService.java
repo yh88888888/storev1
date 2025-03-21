@@ -19,8 +19,37 @@ public class StoreService {
         storeRepository.save(name, stock, price);
     }
 
+    public Store 상품상세(int id) {
+        Store store = storeRepository.findById(id);
+        return store;
+    }
+
     public List<Store> 상품목록() {
         List<Store> storeList = storeRepository.findAll();
         return storeList;
+    }
+
+    @Transactional // delelte, insert, update시에 사용: 함수 종료시 commit 됨
+    public void 상품삭제(int id) {
+        // 1. 상품조회
+        Store store = storeRepository.findById(id);
+        // 2. 상품이 없으면 - Repository에서 try-catch가 가능하지만 책임을 구분하는 차원에서 Service에서 처리한다.
+        if (store == null) {
+            throw new RuntimeException("상품이 없는데 어떻게 삭제하지?");
+        }
+        storeRepository.deleteById(id);// write(DML=insert, delete, update)
+    }
+
+    @Transactional
+    public void 상품수정(int id, String name, String stock, String price) {
+        // 1. 상품조회
+        Store store = storeRepository.findById(id);
+        // 2. 상품이 없으면 - Repository에서 try-catch가 가능하지만 책임을 구분하는 차원에서 Service에서 처리한다.
+        if (store == null) {
+            throw new UnsupportedOperationException("상품없어");
+        }
+        storeRepository.updateBId(id, name, stock, price);// write(DML=insert, delete, update)
+        // TODO Auto-generated method stub
+
     }
 }

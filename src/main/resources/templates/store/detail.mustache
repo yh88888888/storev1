@@ -1,17 +1,20 @@
 {{> layout/header}}
 
 <section>
-    <a href="/store/1/update-form">수정화면가기</a>
-    <form action="/store/1/delete" method="POST">
+    <a href="/store/{{model.id}}/update-form">수정화면가기</a>
+    <form action="/store/{{model.id}}/delete" method="POST">
         <button type="submit">삭제</button>
     </form>
-    <div>
-        번호 : 1 <br>
-        상품명 : 바나나 <br>
-        상품가격 : 3000원 <br>
-        상품재고 : 100개 <br>
-    </div>
+        {{#model}}
+        <div>
+            번호 : {{id}} <br>
+            상품명 : {{name}} <br>
+            상품가격 : {{price}}원 <br>
+            상품재고 : {{stock}}개 <br>
+        </div>
+            {{/model}}
     <form action="#">
+    
         <input type="hidden" value="1">
         <input type="text" placeholder="당신은 누구인가요?">
         <input type="text" placeholder="Enter 개수">

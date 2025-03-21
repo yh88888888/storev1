@@ -10,3 +10,10 @@ public class LogController {
         return "log/list";
     }
 }
+
+// @GetMapping("/log/list")
+// public String loglist(HttpServletRequest request) {
+// List<Log> log = logService.구매목록();
+// request.setAttribute("log",log);
+// return "store/update-form";
+// }

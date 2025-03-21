@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@Controller // IoC(제어의 역전전) => HashSet
+@Controller // IoC(제어의 역전) => HashSet
 public class StoreController {
 
     private StoreService storeService;
@@ -26,18 +26,23 @@ public class StoreController {
         return "store/list";
     }
 
-    @GetMapping("/store/{id}")
-    public String detail(@PathVariable("id") int id) {
-        return "store/detail";
+    @PostMapping("/store/save")
+    public String save(@RequestParam("name") String name, @RequestParam("stock") int stock,
+            @RequestParam("price") int price) {
+        storeService.상품등록(name, stock, price);
+        return "redirect:/";
     }
 
-    @GetMapping("/store/{id}/update-form")
-    public String updateForm(@PathVariable("id") int id) {
-        return "store/update-form";
+    @GetMapping("/store/{id}")
+    public String detail(@PathVariable("id") int id, HttpServletRequest request) {
+        Store store = storeService.상품상세(id);
+        request.setAttribute("model", store);
+        return "store/detail";
     }
 
     @PostMapping("/store/{id}/delete")
     public String delete(@PathVariable("id") int id) {
+        storeService.상품삭제(id);
         return "redirect:/";
     }
 
@@ -46,17 +51,16 @@ public class StoreController {
         return "store/save-form";
     }
 
-    @PostMapping("/store/save")
-    public String save(@RequestParam("name") String name, @RequestParam("stock") int stock,
-            @RequestParam("price") int price) {
-
-        storeService.상품등록(name, stock, price);
-
-        return "redirect:/";
-    }
-
     @PostMapping("/store/{id}/update")
     public String update(@PathVariable("id") int id) {
+        return "redirect:/store/" + id;
+    }
+
+    @GetMapping("/store/{id}/update-form")
+    public String updateForm(@PathVariable("id") int id, @RequestParam("name") String name,
+            @RequestParam("stock") String stock, @RequestParam("price") String price) {
+        storeService.상품수정(id, name, stock, price);
+        System.out.println("name" + name);
         return "redirect:/store/" + id;
     }
 }
