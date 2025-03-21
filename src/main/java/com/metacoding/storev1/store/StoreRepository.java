@@ -38,9 +38,8 @@ public class StoreRepository {
     public List<Store> findAll() {
         // 조건 : 오브젝트 매핑은 @Entity가 붙어야지만 가능하다. (디폴트 생성자를 호출)
         // setter가 없어도 들거아는 이유?? 리플렉션으로 다 찾기 때문이다.
-        Query query = em.createNativeQuery("select * from store_tb order by id desc", Store.class);
-        List<Store> storeList = query.getResultList();
-        return storeList;
+        Query query = em.createNativeQuery("select id, name, price, stock from store_tb order by id desc", Store.class);
+        return query.getResultList();
     }
 
     public void deleteById(int id) {

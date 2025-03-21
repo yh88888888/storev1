@@ -5,9 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
-import com.metacoding.storev1.log.LogResponse.ListPage;
-import com.metacoding.storev1.store.List;
-
 // import lombok.RequiredArgsConstructor;
 
 @Import(LogRepository.class)
@@ -20,10 +17,10 @@ public class LogRepositoryTest {
 
     @Test // 3. 세모버튼 생김
     public void findAllJoinStore_test() { // 2. 매개변수에 아무것도 적을 수 없다.
-        List<LogResponse.ListPage> logList = logRepository.findAllJoinStore();
+        java.util.List<LogResponse.ListPage> logList = logRepository.findAllJoinStore();
 
         for (LogResponse.ListPage listPage : logList) {
             System.out.println(listPage);
+        }
     }
-
 }
